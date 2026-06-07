@@ -1,0 +1,42 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/boards":
+    post:
+      summary: create board
+      tags:
+      - Boards
+      parameters: []
+      responses:
+        '200':
+          description: successful
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Название доски
+                  example: Моя ГДД доска
+                description:
+                  type: string
+                  description: Описание доски
+                  example: Доска для стратегии продукта
+                teamId:
+                  type: string
+                  description: ID команды в Miro
+                  example: '123456789'
+              required:
+              - name
+servers:
+- url: http://localhost:3000
+  variables:
+    defaultHost:
+      default: www.example.com
