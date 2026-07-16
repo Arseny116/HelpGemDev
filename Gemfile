@@ -20,6 +20,7 @@ gem "jbuilder"
 # For Http
 gem 'faraday'
 
+gem "paper_trail"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
@@ -62,6 +63,7 @@ group :development, :test do
   gem 'rswag-api'
   gem 'rswag-ui'
   gem 'rswag-specs'
+  gem 'rdoc', '~> 7.0.3'
 end
 
 group :development do

@@ -1,0 +1,2 @@
+module MiroAppHelper
+end

@@ -1,0 +1,18 @@
+<div class="bg-amber-400 p-4">
+  <%= form_with model: @core_pillar,
+                data: {
+                  controller: "miro-form",
+                  action: "submit->miro-form#submit"
+                } do |form| %>
+    <div>
+      <%= form.label :name, "Введите название вашего проекта" %>
+      <%= form.text_field :name, placeholder: "God of war....", data: { miro_form_target: "name" } %>
+    </div>
+    <div>
+      <%= form.label :pillars, "Core pillars (через запятую)" %>
+      <%= form.text_field :pillars, placeholder: "Драки, головоломки...", data: { miro_form_target: "pillars" } %>
+    </div>
+
+    <%= form.submit "Создать проект" %>
+  <% end %>
+</div>

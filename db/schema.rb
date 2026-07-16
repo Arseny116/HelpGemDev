@@ -10,12 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_06_135111) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_05_123525) do
   create_table "boards", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "description"
     t.string "name"
     t.string "teamId"
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "core_pillars", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.json "pillars", default: []
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 end

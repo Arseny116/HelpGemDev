@@ -1,11 +1,9 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+rm -f tmp/pids/server.pid
 
-if gem list --no-installed --exact --silent foreman; then
-  echo "Installing foreman..."
+if ! command -v foreman &> /dev/null; then
   gem install foreman
 fi
 
-# Default to port 3000 if not specified
-export PORT="${PORT:-3000}"
-
-exec foreman start -f Procfile.dev --env /dev/null "$@"
+# Запускаем процессы из Procfile.dev
+foreman start -f Procfile.dev -p 3000

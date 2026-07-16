@@ -1,0 +1,16 @@
+services:
+  web:
+    build: .
+    ports:
+      - "4000:4000"
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/rails
+      - bundle_data:/usr/local/bundle
+      - /rails/node_modules  # Сохраняем node_modules
+    environment:
+      - RAILS_ENV=development
+
+volumes:
+  bundle_data:

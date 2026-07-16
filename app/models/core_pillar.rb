@@ -1,0 +1,2 @@
+class CorePillar < ApplicationRecord
+end
