@@ -7,8 +7,9 @@ import { application } from "./application"
 import HelloController from "./hello_controller"
 import MiroAppController from "./miro_app_controller"
 import MiroFormController from "./miro_form_controller"
+import PdfDownloadController from "./pdf_download_controller"
 
-
+application.register("pdf-download", PdfDownloadController)
 application.register("miro-form", MiroFormController)
 application.register("hello", HelloController)
 application.register("miro-app", MiroAppController)

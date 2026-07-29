@@ -29,8 +29,18 @@ export default class extends Controller {
             })
 
             if (response.ok) {
-                const textForSticky = `<strong>${nameVal}</strong><br/>Pillars: ${pillarsVal}`
-                await this.createMiroSticky(textForSticky)
+                if (response.ok) {
+
+                    const data = await response.json()
+
+
+                    const textForSticky = `<strong>${nameVal}</strong><br/>Pillars: ${pillarsVal}<br/>ID: ${data.id}`
+
+
+                    await this.createMiroSticky(textForSticky)
+
+                    form.reset()
+                }
                 form.reset()
             } else {
                 alert('Сервер вернул ошибку при сохранении в БД!')

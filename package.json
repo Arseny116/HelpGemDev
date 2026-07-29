@@ -3,7 +3,9 @@
   "private": true,
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^8.0.0"
+    "@hotwired/turbo-rails": "^8.0.0",
+    "channels": "^0.0.4",
+    "puppeteer-core": "^22.0.0"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.2",
