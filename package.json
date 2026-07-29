@@ -1,7 +1,19 @@
 {
-  "name": "app",
+  "name": "your-app",
   "private": true,
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.0",
+    "channels": "^0.0.4",
+    "puppeteer-core": "^22.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.2",
+    "esbuild": "^0.28.0",
+    "tailwindcss": "^4.3.0"
+  },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets"
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
+    "build:css": "npx @tailwindcss/cli -i ./app/assets/stylesheets/application.css -o ./app/assets/builds/application.css"
   }
 }

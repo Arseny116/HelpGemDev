@@ -1,0 +1,41 @@
+<div class="bg-amber-400 p-4">
+
+  <%= form_with model: @core_pillar,
+                data: {
+                  controller: "miro-form",
+                  action: "submit->miro-form#submit"
+                } do |form| %>
+    <div>
+      <%= form.label :name, "Введите название вашего проекта" %>
+      <%= form.text_field :name, placeholder: "God of war....", data: { miro_form_target: "name" } %>
+    </div>
+    <div>
+      <%= form.label :pillars, "Core pillars (через запятую)" %>
+      <%= form.text_field :pillars, placeholder: "Драки, головоломки...", data: { miro_form_target: "pillars" } %>
+    </div>
+    <%= form.submit "Создать проект" %>
+  <% end %>
+
+
+
+  <div class="mt-4 p-4 border-t border-amber-500">
+
+    <%= form_with url: pdf_generator_index_path,
+                  method: :post,
+                  data: {
+                    controller: "pdf-download",
+                    pdf_download_target: "form",
+                    action: "submit->pdf-download#listen"
+                  } do |f| %>
+      <div>
+        <%= f.label :sticker_id, "Введите ID CorePillar" %>
+        <%= f.text_field :sticker_id,
+                         placeholder: "Например: 19",
+                         data: { pdf_download_target: "stickerId" } %>
+      </div>
+      <%= f.submit "Создать PDF файл", data: { pdf_download_target: "submitBtn" } %>
+    <% end %>
+
+  </div>
+
+</div>

@@ -17,6 +17,14 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+
+gem 'grover'
+
+# For Http
+gem 'faraday'
+
+gem "paper_trail"
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
@@ -52,6 +60,13 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+
+  gem 'rspec-rails'
+  gem 'rswag-api'
+  gem 'rswag-ui'
+  gem 'rswag-specs'
+  gem 'rdoc', '~> 7.0.3'
 end
 
 group :development do
