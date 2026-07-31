@@ -33,8 +33,11 @@ export default class extends Controller {
 
                     const data = await response.json()
 
+                    const pillarsArray = pillarsVal.split(',')
+                        .map((s) => s.trim())
+                        .join('<br/>')
 
-                    const textForSticky = `<strong>${nameVal}</strong><br/>Pillars: ${pillarsVal}<br/>ID: ${data.id}`
+                    const textForSticky = `<strong>Name: ${nameVal}</strong><br/>Pillars:<br/> ${pillarsArray}<br/>ID: ${data.id}`
 
 
                     await this.createMiroSticky(textForSticky)

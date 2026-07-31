@@ -10,8 +10,8 @@ class CorePillarsController < ApplicationController
                    end
         ).call
         if @core_pillar
+            pp @core_pillar
             render json: @core_pillar, status: :created # Rails автоматом разобьет @core_pillar в json по полям синий трактор....
-
         else
             render json: {error:"Ошибка создания ядра"}, status: :unprocessable_entity
         end
