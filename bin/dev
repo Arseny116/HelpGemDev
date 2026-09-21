@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+rm -f tmp/pids/server.pid
+
+if ! command -v foreman &> /dev/null; then
+  gem install foreman
+fi
+
+# Запускаем процессы из Procfile.dev
+foreman start -f Procfile.dev -p 3000
