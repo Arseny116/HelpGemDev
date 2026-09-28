@@ -1,4 +1,4 @@
-import axios, { type InternalAxiosRequestConfig } from 'axios';
+import axios from 'axios';
 
 const TOKEN_KEY = 'token';
 
@@ -21,10 +21,11 @@ client.interceptors.request.use((config) => {
 client.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
+    const isAuthRequest = ['/login', '/users'].includes(error.config?.url ?? '');
+    if (error.response?.status === 401 && !isAuthRequest) {
       localStorage.removeItem(TOKEN_KEY);
       if (window.location.pathname !== '/login') {
-        window.location.href = '/login';
+        window.location.assign('/login');
       }
     }
     return Promise.reject(error);

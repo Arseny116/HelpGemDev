@@ -1,25 +1,16 @@
-import { createContext, useEffect, useState, type ReactNode } from 'react';
-import { authApi, TOKEN_KEY, type RegisterData, type User } from '../api/auth';
-
-type AuthContextValue = {
-  user: User | null;
-  isLoading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  register: (data: RegisterData) => Promise<void>;
-  logout: () => Promise<void>;
-};
-
-export const AuthContext = createContext<AuthContextValue | null>(null);
+import { useEffect, useState, type ReactNode } from 'react';
+import { type User } from '../../entities/user';
+import { authApi, TOKEN_KEY } from '../../features/auth/api/authApi';
+import type { RegisterData } from '../../features/auth/model/types';
+import { AuthContext } from './auth-context';
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => Boolean(localStorage.getItem(TOKEN_KEY)));
 
-  
   useEffect(() => {
     const token = localStorage.getItem(TOKEN_KEY);
     if (!token) {
-      setIsLoading(false);
       return;
     }
 
@@ -28,6 +19,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       .then(({ user }) => setUser(user))
       .catch(() => {
         localStorage.removeItem(TOKEN_KEY);
+        setUser(null);
       })
       .finally(() => setIsLoading(false));
   }, []);
@@ -47,10 +39,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = async () => {
     try {
       await authApi.logout();
-    } catch {
+    } finally {
+      localStorage.removeItem(TOKEN_KEY);
+      setUser(null);
     }
-    localStorage.removeItem(TOKEN_KEY);
-    setUser(null);
   };
 
   return (

@@ -5,7 +5,10 @@
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.0",
     "channels": "^0.0.4",
-    "puppeteer-core": "^22.0.0"
+    "clsx": "^2.1.1",
+    "puppeteer-core": "^22.0.0",
+    "tailwind-merge": "^3.7.0",
+    "zustand": "^5.0.15"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.2",

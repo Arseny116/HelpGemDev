@@ -1,11 +1,11 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAuth } from '../auth/useAuth';
+import { useAuth } from '../model/useAuth';
 
 export function ProtectedRoute() {
   const { user, isLoading } = useAuth();
 
   if (isLoading) {
-    return <div style={{ padding: 20 }}>Загрузка...</div>;
+    return null;
   }
 
   if (!user) {

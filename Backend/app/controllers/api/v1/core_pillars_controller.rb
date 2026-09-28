@@ -7,9 +7,7 @@ module Api
         # TODO: убрать обработку в  саму команду  :
         @core_pillar = CorePillars::CreateService.new(
           name: clean_params[:name],
-          pillars: if clean_params[:pillars].is_a?(String)
-                     clean_params[:pillars].split(',').map(&:strip)
-                   end
+          pillars: normalize_pillars(clean_params[:core_pillars])
         ).call
         if @core_pillar
           render json: @core_pillar, status: :created
@@ -22,7 +20,12 @@ module Api
       private
 
       def core_pillars_params
-        params.expect(project: [:name, :core_pillars])
+        params.expect(project: [ :name, :core_pillars ])
+      end
+
+      def normalize_pillars(pillars)
+        values = pillars.is_a?(String) ? pillars.split(",") : Array(pillars)
+        values.map { |pillar| pillar.to_s.strip }.reject(&:blank?)
       end
     end
   end

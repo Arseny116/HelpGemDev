@@ -1,22 +1,5 @@
-import { client, TOKEN_KEY } from './client';
-
-export type User = {
-  id: number;
-  name: string;
-  email: string;
-};
-
-export type AuthResponse = {
-  token: string;
-  user: User;
-};
-
-export type RegisterData = {
-  name: string;
-  email: string;
-  password: string;
-  password_confirmation: string;
-};
+import { client, TOKEN_KEY } from '../../../shared/api/client';
+import type { AuthResponse, CurrentUserResponse, RegisterData } from '../model/types';
 
 export const authApi = {
   async login(email: string, password: string): Promise<AuthResponse> {
@@ -29,8 +12,8 @@ export const authApi = {
     return data;
   },
 
-  async me(): Promise<{ user: User }> {
-    const { data } = await client.get<{ user: User }>('/me');
+  async me(): Promise<CurrentUserResponse> {
+    const { data } = await client.get<CurrentUserResponse>('/me');
     return data;
   },
 
