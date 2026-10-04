@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_21_080812) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_04_000000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -52,6 +52,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_21_080812) do
     t.string "name"
     t.json "pillars", default: []
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_core_pillars_on_user_id"
+  end
+
+  create_table "project_versions", force: :cascade do |t|
+    t.integer "core_pillar_id", null: false
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.json "pillars", default: []
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.integer "version_number", null: false
+    t.index ["core_pillar_id", "version_number"], name: "index_project_versions_on_core_pillar_id_and_version_number", unique: true
+    t.index ["core_pillar_id"], name: "index_project_versions_on_core_pillar_id"
+    t.index ["user_id"], name: "index_project_versions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,4 +80,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_21_080812) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "core_pillars", "users"
+  add_foreign_key "project_versions", "core_pillars"
+  add_foreign_key "project_versions", "users"
 end

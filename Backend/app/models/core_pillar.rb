@@ -1,3 +1,4 @@
 class CorePillar < ApplicationRecord
-  has_one_attached :pdf_file
+  belongs_to :user
+  has_many :project_versions, dependent: :destroy
 end

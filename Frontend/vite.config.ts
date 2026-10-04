@@ -15,6 +15,11 @@ export default defineConfig({
         changeOrigin: true,
         secure: false,
       },
+      '/cable': {
+        target: 'ws://localhost:4000',
+        changeOrigin: true,
+        ws: true,
+      },
     },
   },
   preview: {
