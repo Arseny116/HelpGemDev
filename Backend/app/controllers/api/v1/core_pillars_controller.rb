@@ -7,7 +7,8 @@ module Api
         # TODO: убрать обработку в  саму команду  :
         @core_pillar = CorePillars::CreateService.new(
           name: clean_params[:name],
-          pillars: normalize_pillars(clean_params[:core_pillars])
+          pillars: normalize_pillars(clean_params[:core_pillars]),
+          user: current_user
         ).call
         if @core_pillar
           render json: @core_pillar, status: :created
